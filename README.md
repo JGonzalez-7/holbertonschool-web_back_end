@@ -1,11 +1,12 @@
 # Holberton School Web Back End
 
-This repository contains back-end practice projects for Python and NoSQL concepts. Each directory focuses on a separate topic and includes small, task-based scripts.
+This repository contains back-end practice projects for JavaScript, Python, pagination, and NoSQL concepts. Each directory focuses on a separate topic and includes small, task-based scripts.
 
 ## Projects
 
 | Directory | Description |
 |-----------|-------------|
+| `ES6_basic` | JavaScript ES6 exercises covering `const`, `let`, arrow functions, default parameters, rest and spread syntax, template literals, computed properties, object methods, and `for...of` loops |
 | `python_variable_annotations` | Python type annotation exercises covering typed functions, variables, lists, tuples, unions, callables, iterables, and sequences |
 | `python_async_function` | Async Python exercises using `async`, `await`, `asyncio`, concurrent coroutines, runtime measurement, and tasks |
 | `python_async_comprehension` | Async generator and async comprehension exercises using `asyncio` |
@@ -16,6 +17,7 @@ This repository contains back-end practice projects for Python and NoSQL concept
 
 ```text
 .
+├── ES6_basic
 ├── NoSQL
 ├── pagination
 ├── python_async_comprehension
@@ -26,6 +28,8 @@ This repository contains back-end practice projects for Python and NoSQL concept
 ## Requirements
 
 - Python 3.9+
+- Node.js for the `ES6_basic` project
+- Babel with `@babel/preset-env` for running ES6 module syntax in `ES6_basic` when required by the project runner
 - MongoDB for the `NoSQL` project
 - `pymongo` for the Python MongoDB scripts in `NoSQL`
 - Standard Python library modules used throughout the Python projects, including `asyncio`, `random`, `time`, `math`, `csv`, and `typing`
@@ -37,6 +41,12 @@ Navigate into a project directory before running its files. Many Python files us
 ```bash
 cd python_async_function
 python3 0-basic_async_syntax.py
+```
+
+For ES6 task files, use the Holberton-provided test setup or import the exported functions from another JavaScript file:
+
+```bash
+cd ES6_basic
 ```
 
 For MongoDB shell tasks:
