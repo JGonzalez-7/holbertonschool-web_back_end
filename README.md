@@ -8,6 +8,8 @@ This repository contains back-end practice projects for JavaScript, Python, pagi
 |-----------|-------------|
 | `ES6_basic` | JavaScript ES6 exercises covering `const`, `let`, arrow functions, default parameters, rest and spread syntax, template literals, computed properties, object methods, and `for...of` loops |
 | `ES6_classes` | JavaScript ES6 class exercises covering constructors, getters, setters, validation, inheritance, static methods, and symbols |
+| `ES6_promise` | JavaScript ES6 promise exercises covering promise creation, resolution, rejection, chaining, `Promise.all`, `Promise.allSettled`, `Promise.race`, and guardrail error handling |
+| `ES6_data_manipulation` | JavaScript ES6 data manipulation exercises covering arrays, iterator methods, typed arrays, sets, maps, and collection updates |
 | `python_variable_annotations` | Python type annotation exercises covering typed functions, variables, lists, tuples, unions, callables, iterables, and sequences |
 | `python_async_function` | Async Python exercises using `async`, `await`, `asyncio`, concurrent coroutines, runtime measurement, and tasks |
 | `python_async_comprehension` | Async generator and async comprehension exercises using `asyncio` |
@@ -20,6 +22,8 @@ This repository contains back-end practice projects for JavaScript, Python, pagi
 .
 ├── ES6_basic
 ├── ES6_classes
+├── ES6_data_manipulation
+├── ES6_promise
 ├── NoSQL
 ├── pagination
 ├── python_async_comprehension
@@ -30,9 +34,9 @@ This repository contains back-end practice projects for JavaScript, Python, pagi
 ## Requirements
 
 - Python 3.9+
-- Node.js for the `ES6_basic` and `ES6_classes` projects
+- Node.js for the JavaScript ES6 projects
 - Babel with `@babel/preset-env` for running ES6 module syntax in the JavaScript projects when required by the project runner
-- Jest and ESLint for the `ES6_classes` test and lint workflows
+- Jest and ESLint for JavaScript test and lint workflows
 - MongoDB for the `NoSQL` project
 - `pymongo` for the Python MongoDB scripts in `NoSQL`
 - Standard Python library modules used throughout the Python projects, including `asyncio`, `random`, `time`, `math`, `csv`, and `typing`
@@ -54,6 +58,16 @@ cd ES6_basic
 
 ```bash
 cd ES6_classes
+npm run full-test
+```
+
+```bash
+cd ES6_promise
+npm run full-test
+```
+
+```bash
+cd ES6_data_manipulation
 npm run full-test
 ```
 
