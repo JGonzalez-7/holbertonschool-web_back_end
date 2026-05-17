@@ -14,7 +14,7 @@ export default class StudentsController {
 
         sortedFields.forEach((field) => {
           output.push(
-            `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`
+            `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`,
           );
         });
 
