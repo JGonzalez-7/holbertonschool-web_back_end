@@ -4,44 +4,36 @@ function readDatabase(filePath) {
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, 'utf8', (error, data) => {
       if (error) {
-        reject(new Error('Cannot load the database'));
+        reject(error);
         return;
       }
 
       try {
-        // Split the database content into lines and remove empty lines
-        const lines = data
-          .split('\n')
-          .filter((line) => line.trim() !== '');
+        // Split into lines and filter out empty lines
+        const lines = data.split('\n').filter((line) => line.trim() !== '');
 
-        // Remove the CSV header line
+        // Remove header line
         const students = lines.slice(1);
 
-        // Create an object to group first names by field
+        // Group students by field
         const fields = {};
 
-        // Loop through every student row
         students.forEach((student) => {
-          // Extract firstname and field from the CSV row
           const [firstname, , , field] = student.split(',');
 
-          // Trim values to avoid spaces or Windows line ending problems
-          const trimmedFirstname = firstname.trim();
+          // Trim the field to avoid problems with spaces or Windows line endings
           const trimmedField = field.trim();
 
-          // Create the field array if it does not exist yet
           if (!fields[trimmedField]) {
             fields[trimmedField] = [];
           }
 
-          // Add the firstname to the correct field
-          fields[trimmedField].push(trimmedFirstname);
+          fields[trimmedField].push(firstname);
         });
 
-        // Return the grouped students object
         resolve(fields);
       } catch (parseError) {
-        reject(new Error('Cannot load the database'));
+        reject(parseError);
       }
     });
   });
