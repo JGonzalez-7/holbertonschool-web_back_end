@@ -1,34 +1,50 @@
 import fs from 'fs';
 
-export default function readDatabase(path) {
+function readDatabase(filePath) {
   return new Promise((resolve, reject) => {
-    fs.readFile(path, 'utf8', (error, data) => {
+    fs.readFile(filePath, 'utf8', (error, data) => {
       if (error) {
         reject(new Error('Cannot load the database'));
         return;
       }
 
-      const lines = data
-        .split('\n')
-        .map((line) => line.trim())
-        .filter((line) => line !== '');
+      try {
+        // Split the database content into lines and remove empty lines
+        const lines = data
+          .split('\n')
+          .filter((line) => line.trim() !== '');
 
-      const students = lines.slice(1);
-      const fields = {};
+        // Remove the CSV header line
+        const students = lines.slice(1);
 
-      students.forEach((student) => {
-        const studentData = student.split(',');
-        const firstName = studentData[0];
-        const field = studentData[3];
+        // Create an object to group first names by field
+        const fields = {};
 
-        if (!fields[field]) {
-          fields[field] = [];
-        }
+        // Loop through every student row
+        students.forEach((student) => {
+          // Extract firstname and field from the CSV row
+          const [firstname, , , field] = student.split(',');
 
-        fields[field].push(firstName);
-      });
+          // Trim values to avoid spaces or Windows line ending problems
+          const trimmedFirstname = firstname.trim();
+          const trimmedField = field.trim();
 
-      resolve(fields);
+          // Create the field array if it does not exist yet
+          if (!fields[trimmedField]) {
+            fields[trimmedField] = [];
+          }
+
+          // Add the firstname to the correct field
+          fields[trimmedField].push(trimmedFirstname);
+        });
+
+        // Return the grouped students object
+        resolve(fields);
+      } catch (parseError) {
+        reject(new Error('Cannot load the database'));
+      }
     });
   });
 }
+
+export default readDatabase;
