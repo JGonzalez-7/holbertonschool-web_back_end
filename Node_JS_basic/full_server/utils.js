@@ -10,19 +10,22 @@ export default function readDatabase(path) {
 
       const lines = data
         .split('\n')
-        .filter((line) => line.trim() !== '');
+        .map((line) => line.trim())
+        .filter((line) => line !== '');
 
       const students = lines.slice(1);
       const fields = {};
 
       students.forEach((student) => {
-        const [firstname, , , field] = student.split(',');
+        const studentData = student.split(',');
+        const firstName = studentData[0];
+        const field = studentData[3];
 
         if (!fields[field]) {
           fields[field] = [];
         }
 
-        fields[field].push(firstname);
+        fields[field].push(firstName);
       });
 
       resolve(fields);
